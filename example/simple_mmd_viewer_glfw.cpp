@@ -1,4 +1,4 @@
-﻿#include <GL/gl3w.h>
+#include <GL/gl3w.h>
 #include <GLFW/glfw3.h>
 
 #include <iostream>
@@ -1108,6 +1108,10 @@ bool SampleMain(std::vector<std::string>& args)
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
+  glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
+  glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+  glfwWindowHint(GLFW_FLOATING, GLFW_TRUE);
+
 
 	auto window = glfwCreateWindow(1280, 800, "simple mmd viewer", nullptr, nullptr);
 	if (window == nullptr)
@@ -1122,7 +1126,7 @@ bool SampleMain(std::vector<std::string>& args)
 		return false;
 	}
 
-	glfwSwapInterval(0);
+	glfwSwapInterval(1);
 	glEnable(GL_MULTISAMPLE);
 
 	// Initialize application
@@ -1221,7 +1225,7 @@ bool SampleMain(std::vector<std::string>& args)
 		appContext.m_elapsed = float(elapsed);
 		appContext.m_animTime += float(elapsed);
 
-		glClearColor(1.0f, 0.8f, 0.75f, 1);
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		int width, height;
